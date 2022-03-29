@@ -4,21 +4,19 @@
 Contributors: Maurice Tadros
 Tags: Headless Wordpress, Genesis Custom Blocks
 Requires PHP: 7.1
-Stable tag: 0.1.0
+Stable tag: 0.2.0
 License: GPL-3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 === Description ===
+NOT READY FOR PRODUCTION.
 
 Converts a Genesis custom block into html, which a headless wordpress site can parse into components.
 
 The tag name is the slug value. The attributes are, the name/value of the fields. Inner blocks are repeaters in the same structure.
 
-=== Example ===
-
-=== Preview ===
+=== TODO ===
 
 The preview is hard coded for now. It can be overwritten, but extending the filter
-ie: A Genesis block
 
-with the field name/value as attributes.
+Need to find a way to add better testing data.

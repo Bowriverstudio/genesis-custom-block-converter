@@ -16,7 +16,7 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Description: Converts Genesis Custom Blocks to html for ease parsing using headless wordpress.
  * Author: Maurice Tadros 
  * Author URI: http://www.bowriverstudio.com
- * Version: 0.1
+ * Version: 0.2
  * Text Domain: genesis-custom-block-converter
  * Domain Path: /languages/
  * Requires PHP: 7.1
@@ -24,40 +24,16 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  *
 
+NOT READY FOR PRODUCTION.
+=== Description ===
+NOT READY FOR PRODUCTION.
 
-This plugin enables Yoast SEO Support for WPGraphQL.
+Converts a Genesis custom block into html, which a headless wordpress site can parse into components.
 
-== Description ==
+The tag name is the slug value. The attributes are, the name/value of the fields. Inner blocks are repeaters in the same structure.
 
-This plugin enables Yoast SEO Support for WPGraphQL
+=== TODO ===
 
-This is an extension to the WPGraphQL plugin (https://github.com/wp-graphql/wp-graphql) that returns Yoast SEO data.
+The preview is hard coded for now. It can be overwritten, but extending the filter
 
-**Currently returning SEO data for:**
-
-- Pages
-- Posts
-- Custom post types
-- Products (WooCommerce)
-- Categories
-- Custom taxonomies
-- WooCommerce Products
-- Yoast Configuration
-  - Webmaster verification
-  - Social profiles
-  - Schemas
-  - Breadcrumbs
-
-  > Please Note: Yoast and WPGraphQL and their logos are copyright to their respective owners.
-
-== Installation ==
-
-1. Install & activate [WPGraphQL](https://www.wpgraphql.com/)
-2. Install & activate [Yoast SEO](https://wordpress.org/plugins/wordpress-seo/)
-2. Upload plugin to the `/wp-content/plugins/` directory
-
-
- [See GitHub Repo for example queries](https://github.com/ashhitch/wp-graphql-yoast-seo)
-
-== Upgrade Notice ==
-Please note version 14 of the Yoast Plugin is a major update so is now required to run this plugin
+Need to find a way to add better testing data.
