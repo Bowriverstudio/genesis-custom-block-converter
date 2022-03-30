@@ -18,14 +18,15 @@ foreach( $field_names as $field_name){
 				block_row( $field_name );
 				$sub_attributes = array();
 				foreach( $field_config['settings']['sub_fields'] as $sub_field){
-					$sub_attributes[$sub_field->name] = array('value' => block_sub_value( $sub_field->name ), 'control' => $sub_field->control);
+					$subFieldName = str_replace('-', '_', $sub_field->name);
+					$sub_attributes[$subFieldName] = array('value' => block_sub_value( $sub_field->name ), 'control' => $sub_field->control);
 				}
 				$inner_html .= brs_build_block_html($field_name, $sub_attributes);
 			}
 		}
 		reset_block_rows( $field_name  );
 	} else {
-		$attributes[$field_name] = array('value' => block_value( $field_name ), 'control' => $field_config["control"]);
+		$attributes[str_replace('-', '_', $field_name)] = array('value' => block_value( $field_name ), 'control' => $field_config["control"]);
 	}
 }
 
