@@ -2,7 +2,7 @@
 namespace GenesisCustomBlocksConverter;
 
 /**
- * Loops through all genesis_custom_block types and builds a GraphQL Object and Endpoint for testings.  Including repeater.
+ * Loops throught all genesis_custom_block types and builds a GraphQL Object and Endpoint for testings.  Including repeater.
  * 
  * Uses action - graphql_register_types
  */
@@ -156,6 +156,7 @@ function brs_getResolveDataForFields($tagName, $fields){
   }
 
   $resolvedData = brs_get_resolvedData( $tagName, $attributes, $fieldControls, $children);
+  $innerHTML .= $resolvedData['toString'] . $resolvedData['toString'] . $resolvedData['toString'];
   return  $resolvedData;
 }
 
@@ -198,7 +199,7 @@ function brs_get_resolvedData($tag, $attributes, $controls, $children = '' ){
         $graphQLAttributes[$attributeName] = 'Temp will be overwritten';
       } else {
 
-        $value = 'Unknown';
+        $value = "Unknown $controls[$attributeName]";
         switch( $controls[$attributeName] ){
           case 'image':
             $value = 'https://placebear.com/640/360';
@@ -208,6 +209,12 @@ function brs_get_resolvedData($tag, $attributes, $controls, $children = '' ){
             break;
           case 'textarea':
             $value = str_repeat($attributeValues['description']. ' ', 10);
+            break;
+          case 'toggle':
+            $value = '1';
+            break;
+          case 'rich_text':
+            $value = '&lt;p&gt;Text&lt;br /&gt;&lt;strong&gt;Line 2 Bold&lt;br /&gt;&lt;/strong&gt;&lt;em&gt;Line 3 Italic&lt;/em&gt;&lt;br /&gt;Reference to &lt;a href=&quot;http://www.example.com&quot; data-type=&quot;URL&quot; data-id=&quot;www.example.com&quot;&gt;Example&lt;/a&gt;&lt;br /&gt;Reference to &lt;a href=&quot;'.site_url().'/home-page/&quot; data-type=&quot;page&quot; data-id=&quot;81&quot;&gt;Internal Link&lt;/a&gt;&lt;/p&gt;\n&lt;p&gt;Next Paragraph&lt;/p&gt;';
             break;
           case 'url':
             $value = 'https://example.com/';

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+## [0.3.2] - 2022-03-31
+
+Add support for toggle and rich text field
+
+Changed minor version to trigger git updated.
+
 ## [0.2.1] - 2022-03-30
 
 Bug fix - updated block render name to match graphql
