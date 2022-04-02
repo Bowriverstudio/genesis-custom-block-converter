@@ -16,7 +16,7 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Description: Converts Genesis Custom Blocks to html for ease parsing using headless wordpress.
  * Author: Maurice Tadros 
  * Author URI: http://www.bowriverstudio.com
- * Version: 0.3.2
+ * Version: 0.4.0
  * Text Domain: genesis-custom-block-converter
  * Domain Path: /languages/
  * Requires PHP: 7.1

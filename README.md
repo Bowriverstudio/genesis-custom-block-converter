@@ -4,7 +4,7 @@
 Contributors: Maurice Tadros
 Tags: Headless Wordpress, Genesis Custom Blocks
 Requires PHP: 7.1
-Stable tag: 0.3.2
+Stable tag: 0.4.0
 License: GPL-3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
