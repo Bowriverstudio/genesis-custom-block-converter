@@ -4,7 +4,7 @@ Tags:  Headless WordPress, Decoupled WordPress, Genesis Custom Block
 Requires at least: 5.0
 Tested up to: 5.9
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 0.4.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -16,7 +16,7 @@ License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Description: Converts Genesis Custom Blocks to html for ease parsing using headless wordpress.
  * Author: Maurice Tadros 
  * Author URI: http://www.bowriverstudio.com
- * Version: 0.4.0
+ * Version: 0.4.1
  * Text Domain: genesis-custom-block-converter
  * Domain Path: /languages/
  * Requires PHP: 7.1

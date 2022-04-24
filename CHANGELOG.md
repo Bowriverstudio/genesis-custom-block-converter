@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+## [0.4.1] - 2022-04-24
+
+Added Support for a field with the slug the_title will by default render to get_the_title()
+
+
 ## [0.4.0] - 2022-04-02
 
 Add support for classic text field
