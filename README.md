@@ -19,6 +19,9 @@ The tag name is the slug value. The attributes are, the name/value of the fields
 
 A field with the slug the_title will by default render to get_the_title()
 
+=== Preview ===
+
+Adding a "keyword(s)" will be display in the preview.
 
 === Supports Fields ===
 
@@ -32,6 +35,6 @@ Repeater
 
 === TODO ===
 
-The preview is hard coded for now. It can be overwritten, but extending the filter
+The preview is hard coded for now. It can be overwritten, by extending the filter
 
 Need to find a way to add better testing data.
