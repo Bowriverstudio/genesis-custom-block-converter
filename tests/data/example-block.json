@@ -1,0 +1,110 @@
+{
+    "genesis-custom-blocks\/example-block": {
+        "name": "example-block",
+        "title": "Example Block",
+        "excluded": [],
+        "icon": "genesis_custom_blocks",
+        "category": {
+            "slug": "text",
+            "title": "Text",
+            "icon": null
+        },
+        "keywords": [
+            "title"
+        ],
+        "fields": {
+            "title": {
+                "name": "title",
+                "label": "Title",
+                "control": "text",
+                "type": "string",
+                "location": "editor",
+                "order": 0,
+                "help": "The primary display text",
+                "default": "",
+                "placeholder": "",
+                "maxlength": null
+            },
+            "description": {
+                "name": "description",
+                "label": "Description",
+                "control": "textarea",
+                "type": "string",
+                "location": "editor",
+                "order": 1,
+                "help": "",
+                "default": "",
+                "placeholder": "",
+                "maxlength": null,
+                "number_rows": 4
+            },
+            "button-text": {
+                "name": "button-text",
+                "label": "Button Text",
+                "control": "text",
+                "type": "string",
+                "location": "editor",
+                "order": 2,
+                "help": "A Call-to-Action",
+                "default": "",
+                "placeholder": "",
+                "maxlength": null
+            },
+            "button-link": {
+                "name": "button-link",
+                "label": "Button Link",
+                "control": "url",
+                "type": "string",
+                "location": "editor",
+                "order": 3,
+                "help": "The destination URL",
+                "default": "",
+                "placeholder": ""
+            },
+            "image": {
+                "location": "editor",
+                "width": "100",
+                "help": "",
+                "name": "image",
+                "label": "Image",
+                "order": 4,
+                "control": "image",
+                "type": "integer"
+            },
+            "Toggle": {
+                "location": "editor",
+                "width": "100",
+                "help": "",
+                "default": false,
+                "name": "Toggle",
+                "label": "New Field",
+                "order": 5,
+                "control": "toggle",
+                "type": "boolean"
+            },
+            "toggle": {
+                "location": "editor",
+                "width": "100",
+                "help": "",
+                "default": false,
+                "name": "toggle",
+                "label": "Toggle",
+                "order": 6,
+                "control": "toggle",
+                "type": "boolean"
+            },
+            "number": {
+                "location": "editor",
+                "width": "100",
+                "help": "",
+                "default": "",
+                "placeholder": "",
+                "name": "number",
+                "label": "Number",
+                "order": 7,
+                "control": "number",
+                "type": "integer"
+            }
+        }
+    }
+}
