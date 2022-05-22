@@ -1,0 +1,34 @@
+{
+    "scripts": {
+        "lint": "parallel-lint -e php --no-colors --exclude vendor .",
+        "phpcs": "phpcs",
+        "phpcs:fix": "phpcbf",
+        "suite": [
+            "@lint",
+            "@phpcs",
+            "@test"
+        ],
+        "test": "phpunit --testdox"
+    },
+    "require-dev": {
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+        "fakerphp/faker": "^1.19",
+        "php-parallel-lint/php-parallel-lint": "^1.2",
+        "php-stubs/wordpress-tests-stubs": "^5.8",
+        "php-stubs/wp-cli-stubs": "^2.6",
+        "phpcompatibility/phpcompatibility-wp": "^2.1",
+        "phpunit/phpunit": "~7",
+        "roave/security-advisories": "dev-master",
+        "squizlabs/php_codesniffer": "^3.5.8",
+        "wp-coding-standards/wpcs": "^2.2",
+        "yoast/phpunit-polyfills": "^1.0"
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}
