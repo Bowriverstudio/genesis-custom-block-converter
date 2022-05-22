@@ -6,6 +6,7 @@ return function( string $componentName ) {
 	 return array(
 		 'name'    => 'tests/' . $componentName . '.stories.tsx',
 		 'content' => <<<_END
+/* eslint-disable */ 
 import React from 'react';
 
 import { $typescriptProp } from 'client';

@@ -22,17 +22,6 @@ function get_file_scaffold( $json_a ) {
 	}
 	return $scaffold;
 
-	// $checkFiles = scandir( GENESIS_CUSTOM_BLOCKS_TEMPLATE_DIR ); // scan folder content
-	// $fileCount  = count( $checkFiles ); // count number of files in the directory
-	// $i          = 0; // set for iteration;
-	// while ( $i < $fileCount ) {
-	// $file = $checkFiles[ $i ]; // each file is stored in an array ...
-	// if ( $file = '.' || $file = '..' ) {
-	// } else {
-	// wp_send_json( $file );
-	// }
-	// }
-
 	wp_send_json( $fileCount );
 }
 

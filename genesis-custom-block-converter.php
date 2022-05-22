@@ -6,7 +6,7 @@
  * Description: Converts Genesis Custom Blocks to html for ease parsing using headless WordPress.
  * Author: Maurice Tadros
  * Author URI: http://www.bowriverstudio.com
- * Version: 0.4.2
+ * Version: 0.9.2
  * Text Domain: gcbc
  * Domain Path: /languages/
  * Requires PHP: 7.1
