@@ -57,6 +57,7 @@ return function( string $componentName, array $fields, array $json_a ) {
 		 'name'    => $componentName . '.tsx',
 		 'content' => <<<_END
 import React from 'react';
+
 import Image from "next/image"
 
 import { $typescriptProp } from 'client';
