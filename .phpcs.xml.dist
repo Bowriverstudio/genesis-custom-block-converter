@@ -32,7 +32,7 @@
 	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
 		<properties>
 			<!-- Value: replace the function, class, and variable prefixes used. Separate multiple prefixes with a comma. -->
-			<property name="prefixes" type="array" value="code_test,BRS\CodingTest,CODING_TEST"/>
+			<property name="prefixes" type="array" value="genesis_custom_blocks_converter,GenesisCustomBlocksConverter,GENESISCUSTOMBLOCKSCONVERTER"/>
 			<!-- <property name="prefixes" type="array" value="BRS\CodingTest"/>
 			<property name="prefixes" type="array" value="CODING_TEST"/> -->
 		</properties>

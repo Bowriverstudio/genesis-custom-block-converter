@@ -6,7 +6,7 @@
  * Description: Converts Genesis Custom Blocks to html for ease parsing using headless WordPress.
  * Author: Maurice Tadros
  * Author URI: http://www.bowriverstudio.com
- * Version: 0.9.2
+ * Version: 0.9.5
  * Text Domain: gcbc
  * Domain Path: /languages/
  * Requires PHP: 7.1
@@ -22,11 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 // Define paths.
 define( 'GENESIS_CUSTOM_BLOCKS_CONVERTER_DIR', wp_normalize_path( trailingslashit( __DIR__ ) ) );
-define( 'GENESIS_CUSTOM_BLOCKS_CONVERTER_BUILD_DIR', GENESIS_CUSTOM_BLOCKS_CONVERTER_DIR . trailingslashit( 'build/' ) );
 define( 'GENESIS_CUSTOM_BLOCKS_CONVERTER_INCLUDES_DIR', GENESIS_CUSTOM_BLOCKS_CONVERTER_DIR . trailingslashit( 'includes/' ) );
-define( 'GENESIS_CUSTOM_BLOCKS_CONVERTER_TEST_DATA_DIR', GENESIS_CUSTOM_BLOCKS_CONVERTER_DIR . trailingslashit( 'tests/data/' ) );
 define( 'GENESIS_CUSTOM_BLOCKS_CONVERTER_VENDOR_DIR', GENESIS_CUSTOM_BLOCKS_CONVERTER_DIR . trailingslashit( 'vendor/' ) );
-define( 'GENESIS_CUSTOM_BLOCKS_TEMPLATE_DIR', GENESIS_CUSTOM_BLOCKS_CONVERTER_DIR . trailingslashit( 'templates/' ) );
 
 // Define urls.
 define( 'GENESIS_CUSTOM_BLOCKS_CONVERTER_URL', trailingslashit( plugin_dir_url( __FILE__ ) ) );
@@ -41,23 +38,15 @@ define( 'GENESIS_CUSTOM_BLOCKS_CONVERTER_BUILD_URL', trailingslashit( plugins_ur
  *
  * @since    1.0.0
  */
-function run_code_test() {
+function run_code() {
 	$included_files = array(
 		'functions.php',
-
 		'lib/functions.php',
-		'lib/scaffold.php',
-		'lib/typescript.php',
-
-		'graphql/generate_parse_gutenberg.php',
-		'graphql/generate_typescript.php',
-		'graphql/genesis_custom_blocks_scaffold.php',
-		'graphql/genesis_custom_blocks.php',
 	);
 	foreach ( $included_files as $file ) {
 		include_once GENESIS_CUSTOM_BLOCKS_CONVERTER_INCLUDES_DIR . $file;
 	}
 }
-run_code_test();
+run_code();
 
 

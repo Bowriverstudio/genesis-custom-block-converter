@@ -40,24 +40,6 @@
 		echo '<h2>' . $block_config['name'] . '</h2>';
 	}
 
-	$data = array(
-		'test'      => 'test',
-		'num'       => 3,
-		'booltrue'  => true,
-		'boolfalse' => false,
-		'repeater'  => array(
-			array(
-				'repeater-title' => 'Title 1',
-				'repeater-desc'  => 'dd',
-			),
-			array(
-				'repeater-title' => 'Title 2',
-				'repeater-desc'  => 'dd',
-			),
-		),
-	);
-
-	echo json_encode( $data );
 	?>
 	<p>Placeholder for the block (displayed correctly in the frontend)</p>
 </section>
