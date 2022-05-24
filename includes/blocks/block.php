@@ -2,6 +2,7 @@
 /**
  * Loops through the config file and builds html to be parsed on the frontend.
  */
+
 namespace GenesisCustomBlocksConverter;
 
 $block_config = block_config();
@@ -24,20 +25,21 @@ foreach ( $field_names as $field_name ) {
 						'control' => $sub_field->control,
 					);
 				}
-				$inner_html .= brs_build_block_html( $field_name, $sub_attributes );
+				$inner_html .= brs_build_block_html( $block_config['name'] . '-' . $field_name, $sub_attributes );
 			}
 		}
 		reset_block_rows( $field_name );
 	} else {
-		if ( $field_name === 'the_title' ) {
+		$cleaned_field_name = str_replace( '-', '_', $field_name );
+		if ( 'the_title' === $cleaned_field_name ) {
 			// Default value of the_title is "get_the_title()"
-			$value = block_value( $field_name ) != '' ? block_value( $field_name ) : get_the_title();
-			$attributes[ str_replace( '-', '_', $field_name ) ] = array(
+			$value                             = block_value( $field_name ) != '' ? block_value( $field_name ) : get_the_title();
+			$attributes[ $cleaned_field_name ] = array(
 				'value'   => $value,
 				'control' => $field_config['control'],
 			);
 		} else {
-			$attributes[ str_replace( '-', '_', $field_name ) ] = array(
+			$attributes[ $cleaned_field_name ] = array(
 				'value'   => block_value( $field_name ),
 				'control' => $field_config['control'],
 			);

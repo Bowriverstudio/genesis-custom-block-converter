@@ -24,9 +24,10 @@ function brs_get_wp_query_args() {
 /**
  * Loops through all
  *
+ * @param boolean $include_repeater_blocks Includes the repeater blocks.
  * @return GenesisCustomBlockSummaryObject
  */
-function get_genesis_block_summary() {
+function get_genesis_block_summary( $include_repeater_blocks = false ) {
 	$args      = brs_get_wp_query_args();
 	$the_query = new \WP_Query( $args );
 	$list      = array();
@@ -34,10 +35,27 @@ function get_genesis_block_summary() {
 		$the_query->the_post();
 		$json_a = json_decode( get_the_content(), true );
 
-		$list[] = array(
-			'slug'          => get_post_field( 'post_name', get_the_ID() ),
-			'componentName' => get_component_name( $json_a ),
+		$slug          = get_post_field( 'post_name', get_the_ID() );
+		$componentName = get_component_name( $json_a );
+		$list[]        = array(
+			'slug'                => $slug,
+			'componentName'       => $componentName,
+			'parentComponentName' => '',
 		);
+
+		if ( $include_repeater_blocks ) {
+			$repeater_field = get_repeater_field( $json_a );
+			if ( $repeater_field ) {
+				// graphql_debug( $repeater_field, array( 'type' => 'REPEATER_JSON' ) );
+				// graphql_debug( $repeater_field['name'], array( 'type' => 'REPATER NAME' ) );
+				$repeater_slug = $slug . '-' . $repeater_field['name'];
+				$list[]        = array(
+					'slug'                => $repeater_slug,
+					'componentName'       => get_component_name_from_string( $repeater_slug ),
+					'parentComponentName' => $componentName,
+				);
+			}
+		}
 	}
 
 	return $list;
@@ -68,7 +86,7 @@ function get_json_from_slug( $slug ) {
 }
 
 /**
- * Strips - and camel case the name
+ * Returns the component name from json.
  *
  * @param array $json_a json associated array.
  *
@@ -79,6 +97,17 @@ function get_component_name( $json_a ) {
 	$name = $json_a[ $key ]['name'];
 
 	// example-block -> ExampleBlock.
+	return get_component_name_from_string( $name );
+}
+
+/**
+ * Strips - and camel case the name
+ *
+ * @param string $name ie example-block.
+ *
+ * @return string ie: example-block -> ExampleBlock
+ */
+function get_component_name_from_string( string $name ) {
 	$name = explode( '-', $name );
 	$name = implode( '', array_map( 'ucfirst', $name ) );
 	return $name;
@@ -96,6 +125,24 @@ function get_genesis_fields( $json_a ) {
 	return $json_a[ $key ]['fields'];
 }
 
+
+/**
+ * Gets the repeater field if exists.
+ *
+ * @param array $json_a the JSON for this genesis block.
+ *
+ * @return array|false
+ */
+function get_repeater_field( $json_a ) {
+	$fields = get_genesis_fields( $json_a );
+	foreach ( $fields as $field ) {
+		if ( 'repeater' === $field['control'] ) {
+			return $field;
+		}
+	}
+	return false;
+}
+
 /**
  * Builds the HTML for a block.
  *
@@ -110,15 +157,29 @@ function get_genesis_fields( $json_a ) {
  */
 function brs_build_block_html( string $slug, $attributes, $children = false ) {
 	$html = ' <brs tag-name="' . $slug . '"';
-	foreach ( $attributes as $attribute => $values ) {
-		$html .= ' ' . $attribute . " = '";
-		if ( 'image' === $values['control'] ) {
-			$image_attributes = wp_get_attachment_image_src( $values['value'], 'full' );
-			$html            .= $image_attributes[0];
-		} else {
-			$html .= brs_clean_string( $values['value'] );
+	foreach ( $attributes as $attribute => $value ) {
+		switch ( $value['control'] ) {
+			case 'image':
+				$html            .= ' ' . $attribute . " = '";
+				$image_attributes = wp_get_attachment_image_src( $value['value'], 'full' );
+				$html            .= $image_attributes[0];
+				$html            .= '\'';
+				break;
+			case 'toggle':
+				if ( $value['value'] ) {
+					$html .= ' ' . $attribute;
+				}
+				break;
+			case 'number':
+				$html .= ' ' . $attribute . '=' . $value['value'];
+				break;
+			case 'rich_text':
+			case 'classic_text':
+			default:
+				$html .= ' ' . $attribute . " = '";
+				$html .= brs_clean_string( $value['value'] );
+				$html .= '\'';
 		}
-		$html .= '\'';
 	}
 	if ( $children ) {
 		$html .= '>';
@@ -165,15 +226,14 @@ function get_attribute_value( $field_name, $control, $block_value ) {
 	}
 
 	switch ( $control ) {
-		case 'rich_text':
-		case 'classic_text':
-			return 'Not Supported';
 		case 'image':
 			$image_attributes = wp_get_attachment_image_src( $block_value, 'full' );
 			return $image_attributes[0];
 		case 'toggle':
 		case 'number':
 			return $block_value;
+		case 'rich_text':
+		case 'classic_text':
 		default:
 			return brs_clean_string( $block_value );
 	}
