@@ -160,19 +160,22 @@ function brs_build_block_html( string $slug, $attributes, $children = false ) {
 	foreach ( $attributes as $attribute => $value ) {
 		switch ( $value['control'] ) {
 			case 'image':
-				$html            .= ' ' . $attribute . " = '";
-				$image_attributes = wp_get_attachment_image_src( $value['value'], 'full' );
-				$html            .= $image_attributes[0];
-				$html            .= '\'';
-				break;
-			case 'toggle':
-				if ( $value['value'] ) {
-					$html .= ' ' . $attribute;
+				$html .= ' ' . $attribute . " = '";
+				if ( str_contains( $value['value'], 'http' ) ) {
+					// Image is a url
+					$html .= $value['value'];
+					$html .= '\'';
+				} else {
+					// Image contains the id
+					$image_attributes = wp_get_attachment_image_src( $value['value'], 'full' );
+					$html            .= $image_attributes[0];
+					$html            .= '\'';
 				}
 				break;
-			case 'number':
-				$html .= ' ' . $attribute . '=' . $value['value'];
+			case 'toggle':
+				$html .= ' ' . $attribute . " = '" . ( $value['value'] ? 'true' : 'false ' ) . '\'';
 				break;
+			case 'number':
 			case 'rich_text':
 			case 'classic_text':
 			default:
