@@ -241,3 +241,34 @@ function get_attribute_value( $field_name, $control, $block_value ) {
 			return brs_clean_string( $block_value );
 	}
 }
+
+
+function brs_update_or_insert_genesis_custom_block( array $json_a ) {
+	$key        = array_key_first( $json_a );
+	$name       = $json_a[ $key ]['name'];
+	$post_title = $json_a[ $key ]['title'];
+	// Does Post Exists
+	$args = array(
+		'post_name'   => $name,
+		'post_type'   => 'genesis_custom_block',
+		'post_status' => 'publish',
+	);
+
+	$post_data = array(
+		'post_type'    => 'genesis_custom_block',
+		'post_title'   => $post_title,
+		'post_status'  => 'publish',
+		'post_name'    => $name,
+		'post_content' => json_encode( $json_a ),
+	);
+
+	$posts = \get_posts( $args );
+	if ( $posts ) {
+		$post_data['ID'] = $posts[0]->ID;
+		return \wp_update_post( $post_data );
+	} else {
+		// Insert Post.
+		return \wp_insert_post( $post_data );
+	}
+
+}
