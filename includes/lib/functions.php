@@ -85,6 +85,22 @@ function get_json_from_slug( $slug ) {
 	return null;
 }
 
+
+/**
+ * Returns the block name from json.
+ *
+ * @param array $json_a json associated array.
+ *
+ * @return string ie: genesis-custom-blocks/example-block
+ */
+function get_block_name( $json_a ) {
+	$key = array_key_first( $json_a );
+
+	// example-block -> ExampleBlock.
+	return $key;
+}
+
+
 /**
  * Returns the component name from json.
  *
@@ -165,11 +181,34 @@ function brs_build_block_html( string $slug, $attributes, $children = false ) {
 					// Image is a url
 					$html .= $value['value'];
 					$html .= '\'';
+
+					// Add made up AspectRatio
+					$html .= ' ' . $attribute . "_aspect_ratio = '";
+					$html .= '1x1';
+					$html .= '\'';
+
+					// Add made up Alt
+					$html .= ' ' . $attribute . "_alt = '";
+					$html .= '';
+					$html .= '\'';
+
 				} else {
 					// Image contains the id
 					$image_attributes = wp_get_attachment_image_src( $value['value'], 'full' );
 					$html            .= $image_attributes[0];
 					$html            .= '\'';
+
+					// Add AspectRatio
+					$html .= ' ' . $attribute . "_aspect_ratio = '";
+					$html .= "$image_attributes[1]:$image_attributes[2]";
+					$html .= '\'';
+
+					// Add alt
+					$image_alt = get_post_meta( $value['value'], '_wp_attachment_image_alt', true );
+					$image_alt = ( $image_alt === null ) ? '' : $image_alt;
+					$html     .= ' ' . $attribute . "_alt = '";
+					$html     .= "$image_alt";
+					$html     .= '\'';
 				}
 				break;
 			case 'toggle':
