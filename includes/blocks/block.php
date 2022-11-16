@@ -15,9 +15,16 @@ foreach ( $field_names as $field_name ) {
 	$field_config = block_field_config( $field_name );
 	if ( 'repeater' === $field_config['control'] ) {
 		if ( block_rows( $field_name ) ) {
+			$index = 0;
 			while ( block_rows( $field_name ) ) {
 				block_row( $field_name );
 				$sub_attributes = array();
+				// Add index to repeater
+				$sub_attributes['index'] = array(
+					'value'   => $index,
+					'control' => 'number',
+				);
+				$index++;
 				foreach ( $field_config['settings']['sub_fields'] as $sub_field ) {
 					$subFieldName                    = str_replace( '-', '_', $sub_field->name );
 					$sub_attributes[ $subFieldName ] = array(
