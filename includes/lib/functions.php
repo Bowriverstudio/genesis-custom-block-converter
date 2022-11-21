@@ -200,7 +200,7 @@ function brs_build_block_html( string $slug, $attributes, $children = false ) {
 
 					// Add AspectRatio
 					$html .= ' ' . $attribute . "_aspect_ratio = '";
-					$html .= "$image_attributes[1]:$image_attributes[2]";
+					$html .= "$image_attributes[1]/$image_attributes[2]";
 					$html .= '\'';
 
 					// Add alt
